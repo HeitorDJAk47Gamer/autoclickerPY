@@ -1,23 +1,23 @@
 import time
+
 import pyautogui
 
-# Definir coordenadas de destino para o clique
-x = 100
-y = 100
+def click(x, y):
+    # Clique no local especificado
+    pyautogui.click(x, y)
 
-# Definir quantidade de cliques
-num_clicks = 10
+def main():
+    # Escolha a posição do mouse onde você deseja clicar
+    x = 100
+    y = 100
 
-# Aguardar 5 segundos antes de iniciar
-time.sleep(5)
+    # Comece a clicar
+    while True:
+        click(x, y)
+        time.sleep(1)
 
-# Loop para realizar os cliques
-for _ in range(num_clicks):
-    # Mover o mouse para as coordenadas desejadas
-    pyautogui.moveTo(x, y, duration=0.2)
-    
-    # Simular um clique no botão esquerdo do mouse
-    pyautogui.click(button='left')
-    
-    # Aguardar 1 segundo antes do próximo clique
-    time.sleep(1)
+    # Mostre o botão para definir a posição do clique
+    pyautogui.displayMessage("Clique aqui para definir a posição do clique")
+
+if __name__ == "__main__":
+    main()
