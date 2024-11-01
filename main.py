@@ -1,11 +1,11 @@
 import time
 import pyautogui
-import keyboard  # Certifique-se de instalar essa biblioteca com `pip install keyboard`
+import keyboard  
 
 def auto_clicker(x, y, interval):
     """Executa cliques automáticos na posição (x, y) a cada `interval` segundos."""
     print(f"Iniciando auto-clicker na posição ({x}, {y}) com intervalo de {interval} segundos.")
-    while not keyboard.is_pressed('q'):  # Pressione 'q' para parar o auto-clicker
+    while not keyboard.is_pressed('q'):
         pyautogui.click(x, y)
         time.sleep(interval)
 
@@ -38,7 +38,7 @@ def main():
             except ValueError:
                 print("Intervalo inválido! Por favor, digite um número.")
 
-        time.sleep(0.1)  # Pausa para reduzir o uso da CPU
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     main()
