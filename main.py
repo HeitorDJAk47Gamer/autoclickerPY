@@ -1,23 +1,44 @@
 import time
 import pyautogui
+import keyboard  # Certifique-se de instalar essa biblioteca com `pip install keyboard`
 
-def click(x, y):
-    # Clique no local especificado
-    pyautogui.click(x, y)
+def auto_clicker(x, y, interval):
+    """Executa cliques automáticos na posição (x, y) a cada `interval` segundos."""
+    print(f"Iniciando auto-clicker na posição ({x}, {y}) com intervalo de {interval} segundos.")
+    while not keyboard.is_pressed('q'):  # Pressione 'q' para parar o auto-clicker
+        pyautogui.click(x, y)
+        time.sleep(interval)
 
 def main():
-    # Escolha a posição do mouse onde você deseja clicar
-    x = 610
-    y = 610
+    print("Auto-clicker pronto para configurar.")
+    print("1. Posicione o mouse e pressione 'p' para capturar a posição.")
+    print("2. Pressione 's' para iniciar o auto-clicker ou 'q' para sair.")
+    
+    x, y = None, None
+    interval = 0.1  # Intervalo padrão de 0.1 segundo entre cliques
+    
+    while True:
+        if keyboard.is_pressed('p'):
+            x, y = pyautogui.position()
+            print(f"Posição de clique definida em: ({x}, {y})")
+            time.sleep(0.5)  # Pequena pausa para evitar múltiplas capturas
 
-    # Comece a clicar
-    try:
-        while True:
-            click(x, y)
-            time.sleep(0.1)  # Intervalo entre os cliques (ajustável)
+        elif keyboard.is_pressed('s') and x is not None and y is not None:
+            print("Iniciando auto-clicker...")
+            auto_clicker(x, y, interval)
 
-    except KeyboardInterrupt:
-        print("Script interrompido pelo usuário.")
+        elif keyboard.is_pressed('q'):
+            print("Auto-clicker encerrado.")
+            break
+
+        elif keyboard.is_pressed('i'):
+            try:
+                interval = float(input("Digite o intervalo de clique em segundos: "))
+                print(f"Intervalo atualizado para {interval} segundos.")
+            except ValueError:
+                print("Intervalo inválido! Por favor, digite um número.")
+
+        time.sleep(0.1)  # Pausa para reduzir o uso da CPU
 
 if __name__ == "__main__":
     main()
