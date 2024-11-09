@@ -1,6 +1,4 @@
-import time
-import pyautogui
-import keyboard  
+import time, pyautogui, keyboard
 
 def auto_clicker(x, y, interval):
     """Executa cliques automáticos na posição (x, y) a cada `interval` segundos."""
